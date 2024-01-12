@@ -26,7 +26,6 @@ keys = [
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
@@ -40,7 +39,7 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key([], "Print", lazy.spawn('gnome-screenshot -i')),
+
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
@@ -53,7 +52,6 @@ keys = [
     ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "b", lazy.spawn(browser), desc="Launch browser"),
-    Key([mod], "s", lazy.spawn('rofi -modi drun,run -show drun -font "FiraCode Nerd Font Mono 12" -show-icons'), desc="Launch app launcher"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "d", lazy.window.kill(), desc="Kill focused window"),
@@ -71,6 +69,17 @@ keys = [
     Key([], 'XF86AudioMute', lazy.spawn('amixer set Master toggle')),
     Key([], 'XF86AudioRaiseVolume', lazy.spawn('amixer set Master 5%+')),
     Key([], 'XF86AudioLowerVolume', lazy.spawn('amixer set Master 5%-')),
+    
+    # Keyboard layouts
+    Key([mod], "F12", lazy.spawn('setxkbmap -layout us')),
+    Key([mod], "F11", lazy.spawn('setxkbmap -layout ru')),
+
+    # Screenshot
+    Key([], "Print", lazy.spawn('gnome-screenshot -i')),
+
+    # Rofi
+
+    Key([mod], "s", lazy.spawn('rofi -modi drun,run -show drun -font "FiraCode Nerd Font Mono 12" -show-icons'), desc="Launch app launcher"),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -171,8 +180,8 @@ screens = [
                 right_arrow("#000000", "#927fbf"),
                 widget.WindowName(),
                 widget.KeyboardLayout(
-                    configured_keyboards = ['us'],
-                    display_map = {'us': '🇺🇸'},
+                    configured_keyboards=['us','ru'],
+                    display_map = {'us': '🇺🇸', 'ru': '🇷🇺'},
                     fmt = '[ {} ]',
                     padding=10
                 ),
