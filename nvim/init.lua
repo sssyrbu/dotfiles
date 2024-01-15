@@ -14,5 +14,6 @@ require('plugins.autopairs')
 require('plugins.bufferline')
 require('plugins.comments')
 require('plugins.gitsigns')
+require('plugins.mason')
 
 vim.cmd("colorscheme noctis")
