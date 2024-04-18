@@ -1,0 +1,23 @@
+import = ["~/.config/alacritty/rose-pine-moon.toml"]
+
+[cursor]
+style = "Block"
+
+[font]
+size = 7 
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+
+[window]
+startup_mode = "Windowed"
+dynamic_padding = true
+opacity = 1.0
+
+[window.padding]
+x = 6
+y = 0
+
+#[window.dimensions]
+#columns = 90
+#lines = 25
