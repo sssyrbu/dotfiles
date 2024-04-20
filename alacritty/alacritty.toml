@@ -1,10 +1,12 @@
-import = ["~/.config/alacritty/rose-pine-moon.toml"]
+import = [
+    "~/.config/alacritty/themes/themes/omni.toml"
+]
 
 [cursor]
 style = "Block"
 
 [font]
-size = 7 
+size = 12 
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
