@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -9,51 +10,39 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ 'phaazon/hop.nvim' },
-	{
-	    "nvim-neo-tree/neo-tree.nvim",
-	    branch = "v3.x",
-	    dependencies = {
-	      "nvim-lua/plenary.nvim",
-	      "nvim-tree/nvim-web-devicons",
-	      "MunifTanjim/nui.nvim",
-	    }
-	},
-	{ 'nvim-treesitter/nvim-treesitter' },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function()
+          require("nvim-treesitter.configs").setup {
+        ensure_installed = { "c", "lua", "rust", "python" },
+            highlight = { enable = true, }
+          }
+        end
+    },
+    { 'neovim/nvim-lspconfig' },
 	{ 'neovim/nvim-lspconfig' },
-	{ 'neovim/nvim-lspconfig' },
+    {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+    },
+    { 'numToStr/Comment.nvim' },
 	{ 'hrsh7th/cmp-nvim-lsp' },
 	{ 'hrsh7th/cmp-buffer' },
 	{ 'hrsh7th/cmp-path' },
 	{ 'hrsh7th/cmp-cmdline' },
 	{ 'hrsh7th/nvim-cmp' },
-    { 
-        'kartikp10/noctis.nvim',
-        dependencies = { 'rktjmp/lush.nvim' }
-    },
-    { 'ryanoasis/vim-devicons' },
-    {
-    'nvim-telescope/telescope.nvim', tag = '0.1.5',
-      dependencies = { 'nvim-lua/plenary.nvim' }
-    },
     { 'windwp/nvim-autopairs' },
-    {
-        'akinsho/bufferline.nvim',
-        version = "*",
-        dependencies = 'nvim-tree/nvim-web-devicons'
-    },
-    { 'numToStr/Comment.nvim' },
-    { 'lewis6991/gitsigns.nvim' },
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
     {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig",
-    }
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+    },
 })

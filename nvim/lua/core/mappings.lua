@@ -1,5 +1,3 @@
--- NeoTree
-vim.keymap.set('n', '<C-e>', ':Neotree float<CR>', {noremap = true})
 -- Save file
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true })
 -- Quit file

@@ -8,7 +8,6 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -47,13 +46,13 @@ floating_modifier $mod
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
+# tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec "alacritty"
 
 # start a browser
-bindsym $mod+b exec "brave" 
+bindsym $mod+b exec "brave-browser" 
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -183,37 +182,37 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
-set $preview-colour      #2f343f
+# Define the colors
+set $bg-color #161821
+set $inactive-bg-color #161821
+set $text-color #6B7089
+set $inactive-text-color #84A0C6
+set $urgent-bg-color #161821
+set $urgent-text-color #FF5555
+set $placeholder-bg-color #161821
+set $placeholder-text-color #6B7089
+set $client-background #161821
 
-# window colors
-#                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color         $preview-colour
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $preview-colour
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $preview-colour
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color         $preview-colour
-
+# Apply the colors to the client states
+client.focused          $bg-color $bg-color $text-color #6272A4  $bg-color
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #44475A  $inactive-bg-color
+client.unfocused        $placeholder-bg-color $placeholder-bg-color $placeholder-text-color #282A36  $placeholder-bg-color
+client.urgent           $urgent-bg-color $urgent-bg-color $urgent-text-color #FF5555  $urgent-bg-color
+client.placeholder      $placeholder-bg-color $placeholder-bg-color $placeholder-text-color #282A36  $placeholder-bg-color
+client.background       $client-background
 
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-	status_command i3blocks -c /home/romik/.config/i3/i3blocks.conf 
-	separator_symbol "|"
-	position top
-	colors {
-		background $bg-color
-		separator #757575
-		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-	}
+    font pango:DejaVu Sans Mono 11 
+    position top
+    tray_output none
+    status_command ~/.config/i3/bumblebee-status/bumblebee-status -m disk:root \
+        memory battery amixer brightness date datetime \
+        -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" \
+        -t iceberg-rainbow 
 }
 
 # Sreen brightness controls
@@ -221,4 +220,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl set 5%+ # increase screen brightn
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%- # decrease screen brightness
 
 # Autostart
-exec_always /home/romik/.config/i3/scripts/./wallpaper.sh 
+exec_always feh --bg-fill /home/romik/Pictures/wallpaper.jpg 
+exec_always xrandr -s 1920x1080
+exec_always xset s off
+exec_always xset -dpms
