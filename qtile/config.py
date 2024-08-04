@@ -132,8 +132,8 @@ layouts = [
 
 widget_defaults = dict(
     font="sans",
-    fontsize=12,
-    padding=3,
+    fontsize=13,
+    padding=1,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -142,7 +142,7 @@ def left_arrow(bg_color, fg_color):
     return TextBox(
         text='\uE0B2',
         padding=0,
-        fontsize=35,
+        fontsize=25,
         background=bg_color,
         foreground=fg_color)
 
@@ -151,13 +151,15 @@ def right_arrow(bg_color, fg_color):
     return TextBox(
         text='\uE0B0',
         padding=0,
-        fontsize=35,
+        fontsize=25,
         background=bg_color,
         foreground=fg_color)
 
 
 screens = [
     Screen(
+        wallpaper='~/.config/qtile/background.jpg',
+        wallpaper_mode='stretch',
         top=bar.Bar(
             [
                 widget.CurrentLayout(
@@ -181,14 +183,9 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 # widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
-                widget.WindowName(),
                 # widget.KeyboardLayout(
                 #     configured_keyboards = ['us'],
                 #     display_map = {'us': '🇺🇸'},
@@ -197,18 +194,24 @@ screens = [
                 #     fmt = '[ {} ]',
                 #     padding=10
                 # ),
+                widget.Memory(
+                    measure_mem='G',
+                    padding=10,
+                    fmt='[ {} ]'
+                ),
                 widget.Volume(
                     emoji=True,
-                    padding=10
+                    padding=10,
+                    fmt='[ {} ]'
                 ),
                 widget.Battery(
                     padding=10,
                     format='{percent:2.0%}',
-                    fmt='[ 🔋{} ]'
+                    fmt='[ 🔋 {} ]'
                 ),
                 widget.Wlan(
                     paddint=10,
-                    interface='wlp1s0',
+                    interface='wlan0',
                     format='{percent:2.0%}',
                     fmt='[ 🛜 {} ]'
                 ),
@@ -218,9 +221,7 @@ screens = [
                     format="%Y-%m-%d / %I:%M %p",
                 ),
             ],
-            24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            25,
         ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling

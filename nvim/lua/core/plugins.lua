@@ -42,7 +42,14 @@ require("lazy").setup({
         dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
     {
-    'nvim-telescope/telescope.nvim', tag = '0.1.5',
-      dependencies = { 'nvim-lua/plenary.nvim' }
+        'nvim-telescope/telescope.nvim', tag = '0.1.5',
+         dependencies = { 'nvim-lua/plenary.nvim' }
     },
+    {
+        "EdenEast/nightfox.nvim",
+        config = function()
+            vim.g.nightfox_transparent = true
+            vim.cmd("colorscheme carbonfox")
+        end
+    }
 })

@@ -1,0 +1,20 @@
+import = [
+    "~/.config/alacritty/themes/themes/citylights.toml"
+]
+
+[cursor]
+style = "Block"
+
+[font]
+size = 7 
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+
+[window]
+startup_mode = "Windowed"
+dynamic_padding = true
+
+[window.padding]
+x = 6
+y = 0
