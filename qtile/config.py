@@ -202,7 +202,7 @@ colors = init_colors()
 
 def init_widgets_defaults():
     return dict(font="Noto Sans",
-                fontsize = 12,
+                fontsize = 10,
                 padding = 2,
                 background=colors[1])
 
@@ -212,8 +212,8 @@ def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
                widget.GroupBox(font="FontAwesome",
-                        fontsize = 16,
-                        margin_y = -1,
+                        fontsize = 13,
+                        margin_y = 0,
                         margin_x = 0,
                         padding_y = 6,
                         padding_x = 5,
